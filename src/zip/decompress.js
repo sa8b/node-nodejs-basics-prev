@@ -10,16 +10,7 @@ const writeFilePath = "./src/zip/files/fileToCompress.txt";
   const source = createReadStream(readFilePath);
   const destination = createWriteStream(writeFilePath);
 
-  pipeline(source, unzip, destination, (err) => {
-    if (err) {
-      console.error("An error occurred:", err);
-      process.exitCode = 1;
-    } else {
-      unlink(readFilePath, (err) => {
-        if(err) console.error(err)
-      });
-    }
-  });
+  pipeline(source, unzip, destination, (err) => console.error(err));
 };
 
 await decompress();
