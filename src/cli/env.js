@@ -1,5 +1,12 @@
-const parseEnv = () => {
-    // Write your code here 
+import { argv } from "process";
+
+const parseEnv = async () => {
+  const [, , ...args] = argv;
+
+  const envs = args
+    .filter((arg) => arg.includes("=") && arg.startsWith("RSS_"))
+    .join("; ");
+  console.log(envs);
 };
 
-parseEnv();
+await parseEnv();
